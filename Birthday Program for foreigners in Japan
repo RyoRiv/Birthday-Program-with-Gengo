@@ -1,0 +1,19 @@
+import jpholiday
+import datetime
+from japanera import Japanera, EraDate
+
+inputyear = int(input("Enter your birth year. ex 1980 : "))
+inputmonth = int(input("Enter the month of your birth. ex 1 for January : "))
+inputday = int(input("Enter the day of your birth. ex 12 for 12th : "))
+
+for age in range (101):
+    ageyear = inputyear + age
+    acdate = datetime.date(ageyear, inputmonth, inputday)
+    era_date = EraDate(ageyear, inputmonth, inputday)
+    gengodate = era_date.strftime("%-e-%-o-%m-%d")
+    print('Your %d-year-old birthday :\t%s\t---->\t%s' %(age, acdate, gengodate), end='')
+    if jpholiday.is_holiday(datetime.date(ageyear, inputmonth, inputday)):
+        holidayname = jpholiday.is_holiday_name(datetime.date(ageyear, inputmonth, inputday))
+        print('\t\tJapanese holiday : ' + str(holidayname))
+    else:
+        print('')
